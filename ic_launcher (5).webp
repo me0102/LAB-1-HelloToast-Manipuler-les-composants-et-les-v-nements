@@ -1,0 +1,37 @@
+package com.example.hellotoast_ouzanzoulbouchra;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private int mCount = 0; // Variable pour stocker le score
+    private TextView mShowCount; // Référence au texte affiché
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Liaison des variables avec les éléments du XML
+        mShowCount = findViewById(R.id.text_count);
+        Button buttonToast = findViewById(R.id.button_toast);
+        Button buttonCount = findViewById(R.id.button_count);
+
+        // Action du bouton Toast
+        buttonToast.setOnClickListener(view -> {
+            Toast.makeText(MainActivity.this, "Bonjour ! Le compteur est à : " + mCount, Toast.LENGTH_SHORT).show();
+        });
+
+        // Action du bouton Incrémenter
+        buttonCount.setOnClickListener(view -> {
+            mCount++; // On ajoute 1
+            if (mShowCount != null) {
+                mShowCount.setText(Integer.toString(mCount)); // Mise à jour de l'affichage
+            }
+        });
+    }
+}
